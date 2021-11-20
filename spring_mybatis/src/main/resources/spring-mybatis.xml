@@ -24,9 +24,12 @@
         <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
     </bean>
 
-    <bean id="accountDao"
-          class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.example.dao.AccountDao"/>
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+<!--    <bean id="accountDao"-->
+<!--          class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+<!--        <property name="mapperInterface" value="com.example.dao.AccountDao"/>-->
+<!--        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
+<!--    </bean>-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.example.dao"/>
     </bean>
 </beans>

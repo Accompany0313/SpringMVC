@@ -5,7 +5,7 @@
 <configuration>
     <typeAliases>
     </typeAliases>
-    <mappers>
-        <mapper class="com.example.dao.AccountDao"/>
-    </mappers>
+<!--    <mappers>-->
+<!--        <mapper class="com.example.dao.AccountDao"/>-->
+<!--    </mappers>-->
 </configuration>
