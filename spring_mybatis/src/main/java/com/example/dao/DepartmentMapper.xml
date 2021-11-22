@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.DepartmentMapper">
+<!--    嵌套结果-->
+    <resultMap id="conn" type="com.example.pojo.Department">
+        <id column="id" property="id"/>
+        <result column="department" property="department"/>
+        <collection property="employee" ofType="com.example.pojo.Employee">
+            <id column="eid" property="id"/>
+            <result column="username" property="username"/>
+            <result column="balance" property="balance"/>
+            <result column="d_id" property="did"/>
+        </collection>
+    </resultMap>
+<!--    实现一对多得联合查询-->
+    <select id="selectConn" parameterType="int" resultMap="conn">
+        select e.id eid, e.username,e.balance, e.d_id, d.id, d.department from t_department d, t_employee e
+        where e.d_id = d.id and d.id = #{id}
+    </select>
+</mapper>

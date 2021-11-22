@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.EmployeeMapper">
+    <resultMap id="conn" type="com.example.pojo.Employee">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="balance" property="balance"/>
+        <association property="department" javaType="com.example.pojo.Department">
+            <result column="department" property="department"/>
+        </association>
+    </resultMap>
+<!--    实现一对一的联合查询-->
+    <select id="selectConnById" parameterType="Integer" resultMap="conn">
+        select e.id, e.username, e.balance, d.department
+        from t_department d, t_employee e where d.id = e.d_id and e.id = #{id}
+    </select>
+</mapper>
