@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.EmployeeDao">
+
+    <resultMap id="select" type="com.example.pojo.Employee">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="balance" property="balance"/>
+        <result column="d_id" property="did"/>
+    </resultMap>
+
+<!--    实现对t_employee表通过id查询的功能-->
+    <select id="selectById" parameterType="int" resultMap="select">
+        select * from t_employee where id = #{id}
+    </select>
+<!--    实现对t_employee表查询所有列的功能-->
+    <select id="selectAll" resultMap="select">
+        select * from t_employee
+    </select>
+<!--    实现对t_employee表通过id删除的功能-->
+    <delete id="delete" parameterType="int">
+        delete from t_employee where id = #{id}
+    </delete>
+<!--    实现对t_employee表的增加的功能-->
+    <insert id="insert" parameterType="com.example.pojo.Employee">
+        insert into t_employee (username, balance, d_id)
+        values (#{username}, #{balance}, #{did});
+    </insert>
+</mapper>
